@@ -20,10 +20,25 @@ function DigitalClock() {
         }
     }, []);
 
+    // this function will handle formatting the time
+    function formatTime() {
+        let hours = time.getHours(); // use let bc this variable will change
+        const minutes = time.getMinutes();
+        const seconds = time.getSeconds();
+        // if hours is greater than 12 its PM, otherwise its AM
+        const meridiem = hours >= 12 ? "PM" : "AM"; 
+
+        // formats to regular time vs military time
+        // 13 % 12 = 1, 14 % 2 = 2, 12 % 12 = 0 (or 12)
+        hours = hours % 12 || 12;
+
+        return `${hours}:${minutes}:${seconds} ${meridiem}`;
+    }
+
     return(
         <div className="clock-container">
             <div className="clock">
-                <span>00:00:00</span>
+                <span>{formatTime()}</span>
             </div>
         </div>
     );
