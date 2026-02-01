@@ -32,7 +32,15 @@ function DigitalClock() {
         // 13 % 12 = 1, 14 % 2 = 2, 12 % 12 = 0 (or 12)
         hours = hours % 12 || 12;
 
-        return `${hours}:${minutes}:${seconds} ${meridiem}`;
+        return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)} ${meridiem}`;
+    }
+
+    // this function will handle any single digit number to have a leading zero
+    function padZero(number) {
+        // checks if the number is less than zero, if it is add the zero
+        // then use string concatenation to add the number right after
+        // example: 3 => 0 + 3 = 03
+        return (number < 10 ? "0" : "") + number;
     }
 
     return(
